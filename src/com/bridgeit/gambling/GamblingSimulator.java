@@ -8,6 +8,25 @@ public class GamblingSimulator {
 	private static final int IS_LOOSE = 0;
 	private static final int NO_OF_DAYS_IN_MONTH = 30;
 
+	static int maxWinArray[] = new int[30];
+	static int maxLostArray[] = new int[30];
+
+	public void maxWinOrMAxLostInDay() {
+		int maxWinAmount=0,maxlostAmount=0,maxWinDay=0,maxLostDay=0;
+		for (int i = 0; i < 30; i++) {
+			
+			if(maxWinArray[i]>maxWinAmount) {
+				maxWinAmount=maxWinArray[i];
+			}
+			
+			if(maxLostArray[i] > maxlostAmount) {
+				maxlostAmount = maxLostArray[i];
+			}
+		}
+		System.out.println("maximum win in a day is : " + maxWinAmount);
+		System.out.println("maximum lost in a day is : " + maxlostAmount);	
+	}
+
 	public static void main(String[] args) {
 
 		int totalStackValue = 100, dailyBet = 0, noOfDays = 0;
@@ -27,15 +46,21 @@ public class GamblingSimulator {
 				}
 				dailyBet += BET;
 			}
-			noOfDays++;
 			dailyBet = 0;
-			if (totalStackValue > STAKE)
+			if (totalStackValue > STAKE) {
 				System.out.println("win amount in a day " + noOfDays + " is  " + (totalStackValue - STAKE));
+				maxWinArray[noOfDays] = (totalStackValue - STAKE);
+			}
 
-			else if (totalStackValue < STAKE)
+			else if (totalStackValue < STAKE) {
 				System.out.println("loose amount in a day " + noOfDays + " is : " + (STAKE - totalStackValue));
-			else
+				maxLostArray[noOfDays] = (STAKE - totalStackValue);
+			} else {
 				System.out.println("no loost no win ");
+			}
+			noOfDays++;
 		}
+		GamblingSimulator gamblingSimulator = new GamblingSimulator();
+		gamblingSimulator.maxWinOrMAxLostInDay();
 	}
 }
