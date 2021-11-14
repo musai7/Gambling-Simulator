@@ -16,19 +16,21 @@ public class GamblingSimulator {
 	static int dailyBet = 0;
 
 	public void maxWinOrMAxLostInDay() {
-		int maxWinAmount=0,maxlostAmount=0,maxWinDay=0,maxLostDay=0;
+		int maxWinAmount=0,maxlostAmount=0,maxWinDay=0,maxLostDay=0,winDay=0,lostDay=0;
 		for (int i = 0; i < 30; i++) {
 			
 			if(maxWinArray[i]>maxWinAmount) {
 				maxWinAmount=maxWinArray[i];
+				winDay=i;
 			}
 			
 			if(maxLostArray[i] > maxlostAmount) {
 				maxlostAmount = maxLostArray[i];
+				lostDay=i;
 			}
 		}
-		System.out.println("maximum win in a day is : " + maxWinAmount);
-		System.out.println("maximum lost in a day is : " + maxlostAmount);	
+		System.out.println("my luckiest day where i am won maximum in a day " + winDay +  " is : " + maxWinAmount);
+		System.out.println("my unluckiest day where i am lost maximum in a day " +lostDay + " is : " + maxlostAmount);	
 	}
 	
 	public void dailyBet() {
